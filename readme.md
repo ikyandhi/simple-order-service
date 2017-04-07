@@ -1,50 +1,143 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## Simple Order Service
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Simple ERP Logic that allow an order with products to come from a third party application into the system (through an API), assigned existing available items in the system or create new ones if required.
 
-## About Laravel
+## Requirements
+- PHP >= 5.6.4
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## Development Setup
+```
+$ git clone {repo_url} {folder_name}
+$ composer install
+$ composer dump-autoload -o
+$ php artisan migrate
+```
+Ensure email config assigned properly to have send email works. Email trap not implemented at the moment.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Environment Configuration
+Add below environment variable to .env file.
+```
+API_PREFIX=api
+ADMIN_EMAIL=email@administrator.com
+```
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+## API (Prefix: api/, Ie. /api/orders)
 
-## Learning Laravel
+## Orders
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+### Create New Order (POST)
+```
+/api/orders
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+Request:
+{
+  "order": {
+    "customer": "Soong Ha Joong",
+    "address": "This is sample address",
+    "total": 120,
+    "items": [
+      {
+        "sku": "TESTSKU1",
+        "quantity": 1
+      },
+      {
+        "sku": "TESTSKU2",
+        "quantity": 1
+      }
+    ]
+  }
+}
+```
 
-## Laravel Sponsors
+### Update Order (PUT)
+```
+/api/orders/{id}
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
+Request:
+{
+  "order": {
+    "customer": "Soong Ha Joong",
+    "address": "This is sample address",
+    "total": 100
+  }
+}
+```
 
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- **[Codecourse](https://www.codecourse.com)**
-- [Fragrantica](https://www.fragrantica.com)
+### Get Order Detail (GET)
+```
+/api/orders/{id}
+```
 
-## Contributing
+## Products
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+### Get Product Detail (GET)
+```
+/api/products/{id}
+```
 
-## Security Vulnerabilities
+### Create New Product (POST)
+```
+/api/products
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Request:
+{
+  "product": {
+    "sku": "Soong12345"
+  }
+}
+```
+
+## Item
+
+### Get Item Detail (GET)
+```
+/api/items/{id}
+```
+
+### Create New Item (POST)
+```
+/api/items
+
+Request:
+{
+  "item": {
+    "status": "assigned",
+    "physical_status": "to_order",
+    "product_id": 2,
+    "order_id": 1
+  }
+}
+```
+
+### Update Item Detail (PUT)
+```
+/api/items/{id}
+
+Request:
+{
+  "item": {
+    "physical_status": "delivered",
+    "order_id": 1
+  }
+}
+```
+API POSTMAN collection can be found tests/API.postman_collection.
+
+## Requirement Functionalities
+* <s>Create order through API</s>
+* <s>Create new product if doesn't exists.</s>
+* <s>Create an item to be assigned to order upon created.</s>
+* <s>Order completion auto upon item(s) delivered. (Happen to be on backend process).</s>
+* <s>Order cancelation auto upon item(s) are removed.</s>
+* <s>View listing of Orders, Products, and Items (Bootstrap, Vue JS).</s>
+* <s>Send email order confirmation to customer upon complete.</s>
+* <s>Send email notification to admin regarding new product generated. </s>
+* Manage Orders, Products and Items.
 
 ## License
 
