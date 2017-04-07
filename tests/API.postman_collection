@@ -1,0 +1,317 @@
+{
+  "id": "6203432a-6667-542e-3f82-7cb88703e528",
+  "name": "BROSA",
+  "description": "",
+  "order": [
+    
+  ],
+  "folders": [
+    {
+      "id": "5acdad56-c6cc-5c2f-764b-1a027d4a501e",
+      "name": "Item",
+      "description": "",
+      "order": [
+        "9442a869-28e5-9948-6903-f4ef7a2b89f7",
+        "9b3b3540-673d-8b4a-fcff-58ac92253929",
+        "8193edfa-9ebc-6a8b-59f1-a73b5a272704"
+      ],
+      "owner": 0
+    },
+    {
+      "id": "31253295-542b-150f-b181-46b20a4ade10",
+      "name": "Order",
+      "description": "",
+      "order": [
+        "55bc6c3b-d7ac-d930-6b8e-7d1f1a545ef9",
+        "aa3fab07-dbfc-2401-3975-7a90c7dc35f1",
+        "d4b755f3-7e66-1683-79ff-b8f13c750c6a"
+      ],
+      "owner": 0
+    },
+    {
+      "id": "70a566aa-883c-6e18-a998-ba7889a2ec23",
+      "name": "Product",
+      "description": "",
+      "order": [
+        "436d6581-46f9-423e-a7a2-f55fa21c90f3",
+        "60b92486-c121-bbe3-7580-5310fc2c85b0",
+        "b3872a3f-3e59-705f-4430-d052da4e2aea"
+      ],
+      "owner": 0,
+      "collectionId": "6203432a-6667-542e-3f82-7cb88703e528"
+    }
+  ],
+  "timestamp": 1491446434697,
+  "owner": 0,
+  "public": false,
+  "requests": [
+    {
+      "id": "436d6581-46f9-423e-a7a2-f55fa21c90f3",
+      "headers": "Content-Type: application/json\n",
+      "url": "https://brosa.dev/api/products",
+      "preRequestScript": null,
+      "pathVariables": {
+        
+      },
+      "method": "POST",
+      "data": [
+        
+      ],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {
+        
+      },
+      "time": 1491541040970,
+      "name": "https://brosa.dev/api/products",
+      "description": "",
+      "collectionId": "6203432a-6667-542e-3f82-7cb88703e528",
+      "responses": [
+        
+      ],
+      "rawModeData": "{\n\t\"order\": {\n\t\t\"customer\": \"Soong Ha Joong\",\n\t\t\"address\": \"This is sample address\",\n\t\t\"total\": 120,\n\t\t\"items\": [\n\t\t\t\t{ \"sku\": \"TESTSKU1\", \"quantity\": 1 },\n\t\t\t\t{ \"sku\": \"TESTSKU2\", \"quantity\": 1 }\n\t\t\t]\n\t}\n}"
+    },
+    {
+      "id": "55bc6c3b-d7ac-d930-6b8e-7d1f1a545ef9",
+      "headers": "Content-Type: application/json\n",
+      "url": "https://brosa.dev/api/orders",
+      "pathVariables": {
+        
+      },
+      "preRequestScript": null,
+      "method": "POST",
+      "collectionId": "6203432a-6667-542e-3f82-7cb88703e528",
+      "data": [
+        
+      ],
+      "dataMode": "raw",
+      "name": "https://brosa.dev/api/orders",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1491446434696,
+      "version": 2,
+      "responses": [
+        
+      ],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {
+        
+      },
+      "isFromCollection": true,
+      "collectionRequestId": "55bc6c3b-d7ac-d930-6b8e-7d1f1a545ef9",
+      "folder": "31253295-542b-150f-b181-46b20a4ade10",
+      "rawModeData": "{\n\t\"order\": {\n\t\t\"customer\": \"Soong Ha Joong\",\n\t\t\"address\": \"This is sample address\",\n\t\t\"total\": 120,\n\t\t\"items\": [\n\t\t\t\t{ \"sku\": \"TESTSKU1\", \"quantity\": 1 },\n\t\t\t\t{ \"sku\": \"TESTSKU2\", \"quantity\": 1 }\n\t\t\t]\n\t}\n}"
+    },
+    {
+      "id": "60b92486-c121-bbe3-7580-5310fc2c85b0",
+      "headers": "Content-Type: application/json\n",
+      "url": "https://brosa.dev/api/products",
+      "preRequestScript": null,
+      "pathVariables": {
+        
+      },
+      "method": "GET",
+      "data": [
+        
+      ],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {
+        
+      },
+      "time": 1491541046394,
+      "name": "https://brosa.dev/api/products",
+      "description": "",
+      "collectionId": "6203432a-6667-542e-3f82-7cb88703e528",
+      "responses": [
+        
+      ],
+      "rawModeData": "{\n\t\"order\": {\n\t\t\"customer\": \"Soong Ha Joong\",\n\t\t\"address\": \"This is sample address\",\n\t\t\"total\": 120,\n\t\t\"items\": [\n\t\t\t\t{ \"sku\": \"TESTSKU1\", \"quantity\": 1 },\n\t\t\t\t{ \"sku\": \"TESTSKU2\", \"quantity\": 1 }\n\t\t\t]\n\t}\n}"
+    },
+    {
+      "id": "8193edfa-9ebc-6a8b-59f1-a73b5a272704",
+      "headers": "Content-Type: application/json\n",
+      "url": "https://brosa.dev/api/items",
+      "preRequestScript": null,
+      "pathVariables": {
+        
+      },
+      "method": "GET",
+      "data": [
+        
+      ],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {
+        
+      },
+      "time": 1491559709189,
+      "name": "https://brosa.dev/api/items",
+      "description": "",
+      "collectionId": "6203432a-6667-542e-3f82-7cb88703e528",
+      "responses": [
+        
+      ],
+      "rawModeData": "{\n\t\"item\": {\n\t\t\"status\": \"assigned\",\n\t\t\"physical_status\": \"to_order\",\n\t\t\"product_id\": 2,\n\t\t\"order_id\": 1\n\t}\n}"
+    },
+    {
+      "id": "9442a869-28e5-9948-6903-f4ef7a2b89f7",
+      "headers": "Content-Type: application/json\n",
+      "url": "https://brosa.dev/api/items",
+      "preRequestScript": null,
+      "pathVariables": {
+        
+      },
+      "method": "POST",
+      "data": [
+        
+      ],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {
+        
+      },
+      "time": 1491449082060,
+      "name": "https://brosa.dev/api/items",
+      "description": "",
+      "collectionId": "6203432a-6667-542e-3f82-7cb88703e528",
+      "responses": [
+        
+      ],
+      "isFromCollection": true,
+      "collectionRequestId": "9442a869-28e5-9948-6903-f4ef7a2b89f7",
+      "folder": "5acdad56-c6cc-5c2f-764b-1a027d4a501e",
+      "rawModeData": "{\n\t\"order\": {\n\t\t\"customer\": \"Soong Ha Joong\",\n\t\t\"address\": \"This is sample address\",\n\t\t\"total\": 120,\n\t\t\"items\": [\n\t\t\t\t{ \"sku\": \"TESTSKU1\", \"quantity\": 1 },\n\t\t\t\t{ \"sku\": \"TESTSKU2\", \"quantity\": 1 }\n\t\t\t]\n\t}\n}"
+    },
+    {
+      "id": "9b3b3540-673d-8b4a-fcff-58ac92253929",
+      "headers": "Content-Type: application/json\n",
+      "url": "https://brosa.dev/api/items/1",
+      "preRequestScript": null,
+      "pathVariables": {
+        
+      },
+      "method": "PUT",
+      "data": [
+        
+      ],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {
+        
+      },
+      "time": 1491450984795,
+      "name": "https://brosa.dev/api/items",
+      "description": "",
+      "collectionId": "6203432a-6667-542e-3f82-7cb88703e528",
+      "responses": [
+        
+      ],
+      "isFromCollection": true,
+      "collectionRequestId": "9b3b3540-673d-8b4a-fcff-58ac92253929",
+      "folder": "5acdad56-c6cc-5c2f-764b-1a027d4a501e",
+      "rawModeData": "{\n\t\"item\": {\n\t\t\"status\": \"assigned\",\n\t\t\"physical_status\": \"to_order\",\n\t\t\"product_id\": 2,\n\t\t\"order_id\": 1\n\t}\n}"
+    },
+    {
+      "id": "aa3fab07-dbfc-2401-3975-7a90c7dc35f1",
+      "headers": "Content-Type: application/json\n",
+      "url": "https://brosa.dev/api/orders",
+      "preRequestScript": null,
+      "pathVariables": {
+        
+      },
+      "method": "GET",
+      "data": [
+        
+      ],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {
+        
+      },
+      "time": 1491447000700,
+      "name": "https://brosa.dev/api/orders",
+      "description": "",
+      "collectionId": "6203432a-6667-542e-3f82-7cb88703e528",
+      "responses": [
+        
+      ],
+      "isFromCollection": true,
+      "collectionRequestId": "aa3fab07-dbfc-2401-3975-7a90c7dc35f1",
+      "folder": "31253295-542b-150f-b181-46b20a4ade10",
+      "rawModeData": "{\n\t\"order\": {\n\t\t\"customer\": \"Soong Ha Joong\",\n\t\t\"address\": \"This is sample address\",\n\t\t\"total\": 120,\n\t\t\"items\": [\n\t\t\t\t{ \"sku\": \"TESTSKU1\", \"quantity\": 1 },\n\t\t\t\t{ \"sku\": \"TESTSKU2\", \"quantity\": 1 }\n\t\t\t]\n\t}\n}"
+    },
+    {
+      "id": "b3872a3f-3e59-705f-4430-d052da4e2aea",
+      "headers": "Content-Type: application/json\n",
+      "url": "https://brosa.dev/api/products/1",
+      "preRequestScript": null,
+      "pathVariables": {
+        
+      },
+      "method": "PUT",
+      "data": [
+        
+      ],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {
+        
+      },
+      "time": 1491541053672,
+      "name": "https://brosa.dev/api/products",
+      "description": "",
+      "collectionId": "6203432a-6667-542e-3f82-7cb88703e528",
+      "responses": [
+        
+      ],
+      "rawModeData": "{\n\t\"order\": {\n\t\t\"customer\": \"Soong Ha Joong\",\n\t\t\"address\": \"This is sample address\",\n\t\t\"total\": 120,\n\t\t\"items\": [\n\t\t\t\t{ \"sku\": \"TESTSKU1\", \"quantity\": 1 },\n\t\t\t\t{ \"sku\": \"TESTSKU2\", \"quantity\": 1 }\n\t\t\t]\n\t}\n}"
+    },
+    {
+      "id": "d4b755f3-7e66-1683-79ff-b8f13c750c6a",
+      "headers": "Content-Type: application/json\n",
+      "url": "https://brosa.dev/api/orders/1",
+      "preRequestScript": null,
+      "pathVariables": {
+        
+      },
+      "method": "PUT",
+      "data": [
+        
+      ],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {
+        
+      },
+      "time": 1491447045947,
+      "name": "https://brosa.dev/api/orders",
+      "description": "",
+      "collectionId": "6203432a-6667-542e-3f82-7cb88703e528",
+      "responses": [
+        
+      ],
+      "isFromCollection": true,
+      "collectionRequestId": "d4b755f3-7e66-1683-79ff-b8f13c750c6a",
+      "folder": "31253295-542b-150f-b181-46b20a4ade10",
+      "rawModeData": "{\n\t\"order\": {\n\t\t\"customer\": \"Soong Ha Joong\",\n\t\t\"address\": \"This is sample address\",\n\t\t\"total\": 120,\n\t\t\"items\": [\n\t\t\t\t{ \"sku\": \"TESTSKU1\", \"quantity\": 1 },\n\t\t\t\t{ \"sku\": \"TESTSKU2\", \"quantity\": 1 }\n\t\t\t]\n\t}\n}"
+    }
+  ]
+}
