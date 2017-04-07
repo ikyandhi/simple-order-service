@@ -26,8 +26,6 @@ class ApiOrderTest extends TestCase
                 ]
         ]]);
 
-        dd($response);
-
         $response->assertStatus(201);
     }
 
