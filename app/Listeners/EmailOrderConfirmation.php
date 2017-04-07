@@ -2,12 +2,15 @@
 
 namespace App\Listeners;
 
-use App\Events\ProductWasCreated;
+use App\Events\OrderWasCompleted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AddProductItem
+class EmailOrderConfirmation
 {
+
+    use \Illuminate\Foundation\Bus\DispatchesJobs;
+
     /**
      * Create the event listener.
      *
@@ -21,11 +24,12 @@ class AddProductItem
     /**
      * Handle the event.
      *
-     * @param  ProductWasCreated  $event
+     * @param  OrderWasCompleted  $event
      * @return void
      */
-    public function handle(ProductWasCreated $event)
+    public function handle(OrderWasCompleted $event)
     {
-        //
+        $this->dispatch(new \App\Jobs\SendEmailOrderConfirmation($event->order));
     }
+
 }

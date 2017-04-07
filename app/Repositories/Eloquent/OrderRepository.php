@@ -23,6 +23,16 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         
     }
 
+    public function countAssignedItemsUndeliveredByOrderId($orderId)
+    {
+
+        return $this->instance->where('id', $orderId)
+                        ->whereHas('items', function($q) {
+                            return $q->where('physical_status', '!=', \App\Models\Item::STATUS_PHYSICAL_DELIVERED);
+                        })
+                        ->count();
+    }
+
 }
 
 /* End of file OrderRepository.php */

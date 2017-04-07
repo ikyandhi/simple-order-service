@@ -19,7 +19,8 @@ class CreateOrdersTable extends Migration
             $table->string('customer_name');
             $table->text('address');
             $table->string('status', 32);
-            
+            $table->decimal('total')->default(0);
+
             $table->timestamp('order_created_at');
         });
     }

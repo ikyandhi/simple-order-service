@@ -16,7 +16,19 @@ class ApiOrderTest extends TestCase
 
     public function test_it_succesfully_created()
     {
-        $this->post('api/orders')->assertStatus(201);
+        $response = $this->json('POST', 'api/orders', ['order' => [
+                'customer' => "John Cena",
+                'address'  => 'This is test email',
+                'total'    => 100,
+                'items'    => [
+                    ['sku' => 'Test1', 'quantity' => 10],
+                    ['sku' => 'Test2', 'quantity' => 2],
+                ]
+        ]]);
+
+        dd($response);
+
+        $response->assertStatus(201);
     }
 
 }

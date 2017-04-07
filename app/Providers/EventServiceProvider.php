@@ -7,19 +7,25 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 
 class EventServiceProvider extends ServiceProvider
 {
+
     /**
      * The event listener mappings for the application.
      *
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
+        'App\Events\OrderWasCreated' => [
+            'App\Listeners\AddItem',
         ],
-        App\Events\ProductWasCreated::class => [
-            App\Listeners\AddProductItem::class
+        'App\Events\ItemWasUpdated' => [
+            'App\Listeners\CompleteOrder'
+        ],
+        'App\Events\ProductWasCreatedFromOrder' => [
+            'App\Listeners\EmailProductNewlyCreatedConfirmation'
+        ],
+        'App\Events\OrderWasCompleted' => [
+            'App\Listeners\EmailOrderConfirmation'
         ]
-        
     ];
 
     /**
@@ -33,4 +39,5 @@ class EventServiceProvider extends ServiceProvider
 
         //
     }
+
 }

@@ -7,7 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
 
-    protected $table   = 'products';
+    /**
+     *
+     * @var string 
+     */
+    protected $table = 'products';
+
+    /**
+     *
+     * @var array
+     */
     protected $guarded = ['id'];
 
 }

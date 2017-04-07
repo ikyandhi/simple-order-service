@@ -4,16 +4,68 @@ namespace Api\Http\Controllers\V1;
 
 use Api\Http\Controllers\Controller;
 use Api\Http\Services\OrderService;
-use App\Contracts\Repository\OrderRepositoryInterface as Repository;
+use Api\Http\Transformers\OrderTransformer;
+use App\Contracts\Repository\OrderRepositoryInterface;
 use Illuminate\Http\Request;
 use Validator;
 
 class OrderController extends Controller
 {
 
-    public function __construct(Repository $repository)
+    /**
+     *
+     * @var OrderRepositoryInterface 
+     */
+    protected $repository;
+
+    public function __construct(OrderRepositoryInterface $repository)
     {
         $this->repository = $repository;
+    }
+
+    public function index(Request $request)
+    {
+        $paginator = $this->repository->findAllWithPagination(20);
+
+        return $this->response()->paginator($paginator, OrderTransformer::class);
+    }
+
+    public function show($orderId)
+    {
+        $order = $this->repository->findById($orderId);
+
+        if ($order) {
+            return $this->response()->item($order, OrderTransformer::class);
+        }
+
+        return $this->response()->errorNotFound();
+    }
+
+    public function update($orderId, OrderService $service, Request $request)
+    {
+        $validation = \Validator::make(array_merge(['order_id' => $orderId], $request->all()), [
+                    'order_id'               => "required|exists:orders,id",
+                    'order'                  => 'required|array',
+                    'order.customer'         => 'required',
+                    'order.address'          => 'required',
+                    'order.total'            => 'numeric',
+                    'order.items'            => 'array',
+                    'order.items.*.sku'      => '',
+                    'order.items.*.quantity' => 'min:1|numeric',
+        ]);
+
+        if ($validation->fails()) {
+            return $this->response()->errorBadRequest($validation->messages()->first());
+        }
+
+        $order = $service->updateOrder($orderId, $request);
+
+        if ($order) {
+            return $this->response()->accepted();
+        }
+        else {
+            return $this->response()->errorBadRequest("Unable to proceed the update, or order doesn't exists.");
+        }
     }
 
     /**
@@ -33,6 +85,7 @@ class OrderController extends Controller
                     'order.items.*.quantity' => 'required|min:1|numeric',
         ]);
 
+
         if ($validation->fails()) {
             return $this->response()->errorBadRequest($validation->messages()->first());
         }
@@ -42,6 +95,8 @@ class OrderController extends Controller
         if ($order) {
             return $this->response()->created();
         }
+
+        return $this->response()->errorBadRequest();
     }
 
 }

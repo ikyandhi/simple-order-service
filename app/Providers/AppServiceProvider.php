@@ -15,6 +15,10 @@ class AppServiceProvider extends ServiceProvider
         [
             \App\Contracts\Repository\ProductRepositoryInterface::class,
             \App\Repositories\Eloquent\ProductRepository::class
+        ],
+        [
+            \App\Contracts\Repository\ItemRepositoryInterface::class,
+            \App\Repositories\Eloquent\ItemRepository::class
         ]
     ];
 

@@ -15,6 +15,19 @@ require('./bootstrap');
 
 Vue.component('example', require('./components/Example.vue'));
 
+Vue.component('products_table', require('./components/ProductsTable.vue'));
+
+Vue.component('orders_table', require('./components/OrdersTable.vue'));
+
+Vue.component('items_table', require('./components/ItemsTable.vue'));
+
+Vue.component('item_create', require('./components/ItemCreate.vue'));
+
+Vue.component('item_edit', require('./components/ItemEdit.vue'));
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        item_id: false
+    }
 });

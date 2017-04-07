@@ -13,6 +13,8 @@ interface OrderRepositoryInterface extends RepositoryInterface
 {
 
     public function search(array $parameters, $pagination = false);
+
+    public function countAssignedItemsUndeliveredByOrderId($orderId);
 }
 
 /* End of file OrderRepositoryInterface.php */
