@@ -31,6 +31,10 @@ class ItemController extends Controller
         $this->repository = $repository;
     }
 
+    /**
+     * 
+     * @return type
+     */
     public function index()
     {
         $paginator = $this->repository->findAllWithPagination(20);
@@ -38,6 +42,12 @@ class ItemController extends Controller
         return $this->response()->paginator($paginator, ItemTransformer::class);
     }
 
+    /**
+     * 
+     * @param ItemService $service
+     * @param Request $request
+     * @return void
+     */
     public function store(ItemService $service, Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -61,6 +71,13 @@ class ItemController extends Controller
         return $this->response()->errorBadRequest("Unable to proceed the request. Please try again or contact administrator.");
     }
 
+    /**
+     * 
+     * @param integer $itemId
+     * @param ItemService $service
+     * @param Request $request
+     * @return void
+     */
     public function update($itemId, ItemService $service, Request $request)
     {
         $validation = Validator::make(array_merge(['item_id' => $itemId], $request->all()), [
@@ -86,6 +103,12 @@ class ItemController extends Controller
         return $this->response()->errorBadRequest("Unable to proceed the update, or item doesn't exists.");
     }
 
+    /**
+     * 
+     * @param integer $itemId
+     * @param ItemService $service
+     * @return type
+     */
     public function destroy($itemId, ItemService $service)
     {
         $validation = Validator::make(['item_id' => $itemId], [

@@ -12,16 +12,21 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class ItemWasRemoved
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $item;
+
+    use Dispatchable,
+        InteractsWithSockets,
+        SerializesModels;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($item)
     {
-        //
+        $this->item = $item;
     }
 
     /**
@@ -31,6 +36,7 @@ class ItemWasRemoved
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        //
     }
+
 }

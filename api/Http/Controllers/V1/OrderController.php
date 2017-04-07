@@ -23,6 +23,11 @@ class OrderController extends Controller
         $this->repository = $repository;
     }
 
+    /**
+     * 
+     * @param Request $request
+     * @return type
+     */
     public function index(Request $request)
     {
         $paginator = $this->repository->findAllWithPagination(20);
@@ -30,6 +35,11 @@ class OrderController extends Controller
         return $this->response()->paginator($paginator, OrderTransformer::class);
     }
 
+    /**
+     * 
+     * @param integer $orderId
+     * @return type
+     */
     public function show($orderId)
     {
         $order = $this->repository->findById($orderId);
@@ -41,6 +51,14 @@ class OrderController extends Controller
         return $this->response()->errorNotFound();
     }
 
+    /**
+     * Update order
+     * 
+     * @param integer $orderId
+     * @param OrderService $service
+     * @param Request $request
+     * @return HTTP_RESPONSE
+     */
     public function update($orderId, OrderService $service, Request $request)
     {
         $validation = \Validator::make(array_merge(['order_id' => $orderId], $request->all()), [

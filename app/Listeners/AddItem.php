@@ -32,16 +32,19 @@ class AddItem
      */
     public function handle(OrderWasCreated $event)
     {
+        //Assign Available Items
+        
         $nRemainingPendingAssignedOrderItem = $this->getRemainingPendingAssignedOrderItem($event->order->id, $event->items->sum('quantity'));
 
         if ($nRemainingPendingAssignedOrderItem > 0) {
 
             foreach ($event->items as $item) {
+                
                 $nRemainingPendingAssignedByOrderAndProduct = $this->getRemainingPenginAssignedOrderItemByOrderIdAndProductId(
                         $event->order->id, $item['product_id'], $item['quantity']);
 
                 if ($nRemainingPendingAssignedByOrderAndProduct > 0) {
-                    $this->createNewOrderItem($event->order->id, $item['product_id'], $nRemainingPendingAssignedByOrderAndProduct);
+                    $this->createNewItem($event->order->id, $item['product_id'], $nRemainingPendingAssignedByOrderAndProduct);
                 }
             }
         }
@@ -62,6 +65,14 @@ class AddItem
         return ($nOrderedQty - $assignedOrderItems->count());
     }
 
+    /**
+     * To get remaining N items that haven't yet assigned to order based on SKU and QTY requested.
+     * 
+     * @param integer $orderId
+     * @param integer $productId
+     * @param integer $nOrderedQty
+     * @return integer
+     */
     protected function getRemainingPenginAssignedOrderItemByOrderIdAndProductId($orderId,
                                                                                 $productId,
                                                                                 $nOrderedQty)
@@ -71,7 +82,15 @@ class AddItem
         return ($nOrderedQty - $assignedOrderItems->count());
     }
 
-    protected function createNewOrderItem($orderId, $productId, $quantity)
+    /**
+     * Create new item
+     * 
+     * @param integer $orderId
+     * @param integer $productId
+     * @param integer $quantity
+     * @return boolean
+     */
+    protected function createNewItem($orderId, $productId, $quantity)
     {
         $newItems = [];
 

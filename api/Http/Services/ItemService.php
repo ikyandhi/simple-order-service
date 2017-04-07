@@ -3,6 +3,7 @@
 namespace Api\Http\Services;
 
 use App\Contracts\Repository\ItemRepositoryInterface;
+use App\Events\ItemWasRemoved;
 use App\Events\ItemWasUpdated;
 use App\Models\Item;
 use Illuminate\Http\Request;
@@ -58,7 +59,7 @@ class ItemService
                 'status'          => isset($itemData['status']) ? $itemData['status'] : $item->status,
                 'physical_status' => $itemData['physical_status']
             ]);
-            
+
             $item->save();
 
             event(new ItemWasUpdated($item));
@@ -72,8 +73,13 @@ class ItemService
     {
         $item = $this->repository->findById($itemId);
 
-        if ($item) {
+        if ($item && !in_array($item->physical_status, [Item::STATUS_PHYSICAL_IN_WAREHOUSE, Item::STATUS_PHYSICAL_DELIVERED])) {
+            $removedItem = $item;
             $item->delete();
+
+            if (!empty($removedItem)) {
+                event(new ItemWasRemoved($removedItem));
+            }
             return true;
         }
 

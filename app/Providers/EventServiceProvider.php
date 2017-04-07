@@ -20,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ItemWasUpdated' => [
             'App\Listeners\CompleteOrder'
         ],
+        'App\Events\ItemWasRemoved' => [
+            'App\Listeners\CancelOrder'
+        ],
         'App\Events\ProductWasCreatedFromOrder' => [
             'App\Listeners\EmailProductNewlyCreatedConfirmation'
         ],

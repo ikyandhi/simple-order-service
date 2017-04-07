@@ -36,6 +36,12 @@ class ProductController extends Controller
         return $this->response()->paginator($paginator, ProductTransformer::class);
     }
 
+    /**
+     * 
+     * @param ProductService $service
+     * @param Request $request
+     * @return void
+     */
     public function store(ProductService $service, Request $request)
     {
         $validation = \Validator::make($request->all(), [
@@ -56,6 +62,13 @@ class ProductController extends Controller
         return $this->response()->errorBadRequest();
     }
 
+    /**
+     * 
+     * @param integer $productId
+     * @param ProductService $service
+     * @param Request $request
+     * @return void
+     */
     public function update($productId, ProductService $service, Request $request)
     {
         $validation = \Validator::make(array_merge(['product_id' => $productId], $request->all()), [
@@ -78,6 +91,11 @@ class ProductController extends Controller
         }
     }
 
+    /**
+     * 
+     * @param integer $productId
+     * @return void
+     */
     public function show($productId)
     {
         $product = $this->repository->findById($productId);

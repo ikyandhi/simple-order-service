@@ -32,6 +32,7 @@ class OrderTransformer extends TransformerAbstract
         return [
             'id'               => $model->id,
             'customer_name'    => $model->customer_name,
+            'customer_email'   => $model->customer_email,
             'address'          => $model->address,
             'status'           => $model->status,
             'total'            => $model->total,

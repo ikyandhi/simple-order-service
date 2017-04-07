@@ -72,6 +72,7 @@ class OrderService
 
         $order = $this->repository->create([
             'customer_name'    => $orderData['customer'],
+            'customer_email'   => $orderData['email'],
             'address'          => $orderData['address'],
             'status'           => Order::STATUS_IN_PROGRESS,
             'total'            => $orderData['total'],
@@ -95,9 +96,10 @@ class OrderService
 
         if ($order) {
             $order->fill([
-                'customer_name' => $orderData['customer'],
-                'address'       => $orderData['address'],
-                'total'         => $orderData['total']
+                'customer_name'  => $orderData['customer'],
+                'customer_email' => $orderData['email'],
+                'address'        => $orderData['address'],
+                'total'          => $orderData['total']
             ])->update();
 
             return $order;

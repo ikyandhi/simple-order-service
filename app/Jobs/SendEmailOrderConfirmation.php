@@ -35,12 +35,16 @@ class SendEmailOrderConfirmation implements ShouldQueue
      */
     public function handle(\Illuminate\Mail\Mailer $mailer)
     {
+        $emailReceipient = ($this->order->customer_email) ? : null;
 
-        $emailReceipient = env('ADMIN_EMAIL');
 
-        $mailer->send('emails.customer_order_confirmation', $data, function($message) use($emailReceipient, $invoice_number) {
-            $message->to($customer_email)->subject("Invoice Status Update {$invoice_number}");
-        });
+        if ($emailReceipient) {
+            $data = ['status' => $this->order->status];
+
+            $mailer->send('emails.customer_order_confirmation', $data, function($message) use($emailReceipient) {
+                $message->to($emailReceipient)->subject("Order Confirmation");
+            });
+        }
     }
 
 }
